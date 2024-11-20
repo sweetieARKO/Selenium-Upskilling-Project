@@ -56,6 +56,7 @@ public class All {
     }
 
     @Test(dependsOnMethods = {"ByName"})
+
     public void cssSelector() {
         driver.findElement(By.cssSelector("#LastName")).sendKeys("ark");
     }
@@ -85,11 +86,23 @@ public class All {
     public void StartWithXpath2() {
         driver.findElement(By.xpath("//input[starts-with(@id, 'Email')]")).sendKeys("abigail.arko027@gmail.com");
     }
-
     @Test(dependsOnMethods = {"StartWithXpath2"})
-    public void ClassName() {
-        driver.findElement(By.className("button-1.register-next-step-button")).click();
+    public void contains(){
+        driver.findElement(By.xpath("//input[contains(@id,'Company')] ")).sendKeys("Amalitech Company Limited");
     }
+@Test(dependsOnMethods = {"contains"})
+public void parent(){
+        WebElement parent = driver.findElement(By.xpath("//input[@name='Password']/parent::div"));
+        WebElement child = parent.findElement(By.xpath("//input[@name='Password']"));
+        child.sendKeys("sweetie");
+}
+@Test(dependsOnMethods = {"parent"})
+public void self(){
+        driver.findElement(By.xpath("//input[@id='ConfirmPassword'][self::input]")).sendKeys("sweetie");
+}
+    @Test(dependsOnMethods = {"self"})
+    public void ClassName() {
+        driver.findElement(By.xpath("//input[@id='ConfirmPassword'][self::input]")).click();    }
 
     @AfterTest
     public void tearDown() {
