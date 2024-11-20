@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -28,5 +29,9 @@ assertTrue("Link is display", linkTest.isDisplayed());
 linkTest.click();
 String curruntUrl =driver.getCurrentUrl();
 assertTrue(curruntUrl.contains("my-account"));
+}
+@AfterTest
+    public void afterTest(){
+        driver.quit();
 }
 }

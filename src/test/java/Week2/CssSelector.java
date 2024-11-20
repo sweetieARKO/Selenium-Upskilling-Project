@@ -36,4 +36,9 @@ public class CssSelector {
         driver.findElement(By.cssSelector("._42ft._4jy0._6lth._4jy6._4jy1.selected._51sy")).click();
 
     }
+
+    @AfterTest
+    public void afterTest(){
+        driver.quit();
+    }
 }
