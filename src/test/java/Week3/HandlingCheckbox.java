@@ -30,7 +30,7 @@ public class HandlingCheckbox {
         driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys("Mensa");
         driver.findElement(By.xpath("//textarea[@ng-model='Adress']")).sendKeys("33/5");
         driver.findElement(By.xpath("//input[@type='email']")).sendKeys("DomAbigail026@gmail.com");
-        driver.findElement(By.xpath("//input[@ng-model='Phone']")).sendKeys("05988029");
+        driver.findElement(By.xpath("//input[@ng-model='Phone']")).sendKeys("059880829");
 
         // Select gender and hobbies
         driver.findElement(By.xpath("//input[@value='FeMale']")).click();
@@ -66,7 +66,16 @@ public class HandlingCheckbox {
         chooseCountries.click();
         WebElement year =  driver.findElement(By.xpath("//select[@id='yearbox']"));
         Select years = new Select(year);
-        years.selectByValue("1949");
+            years.selectByValue("1949");
+        WebElement month = driver.findElement(By.xpath("//select[@placeholder='Month']"));
+        Select months = new Select(month);
+        months.selectByIndex(7);
+        WebElement day = driver.findElement(By.xpath("//select[@id='daybox']"));
+        Select days = new Select(day);
+        days.selectByIndex(7);
+        driver.findElement(By.xpath("//input[@id='firstpassword']")).sendKeys("sweetie");
+        driver.findElement(By.xpath("//input[@id='secondpassword']")).sendKeys("sweetie");
+        driver.findElement(By.xpath("//button[@id='submitbtn']")).click();
     }
 
     @AfterTest
