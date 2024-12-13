@@ -3,11 +3,12 @@ package week4.Pages;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import week4.items.signup;
 
-public class signUp {gi
+public class Ecomerce {
     WebDriver driver;
     @BeforeTest
     public void before(){
@@ -51,5 +52,8 @@ public class signUp {gi
         register.RemoveItem();
     }
 
-
+@AfterTest
+    public void after(){
+        driver.quit();
+}
 }
