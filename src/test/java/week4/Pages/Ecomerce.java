@@ -6,7 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import week4.items.signup;
+import week4.items.ecomerce;
+
 
 public class Ecomerce {
     WebDriver driver;
@@ -20,35 +21,35 @@ public class Ecomerce {
     }
     @Test(priority = 1)
     public void login() {
-        signup register = new signup(driver);
+        ecomerce register = new ecomerce(driver);
         register.EnterEmail();
         register.EnterPassword();
         register.ClickOnButton();
     }
     @Test(priority = 2, dependsOnMethods = {"login"})
             public void SelectFirstItem() {
-     signup register = new signup(driver);
+     ecomerce register = new ecomerce(driver);
         register.ChooseFirstItem();
     }
     @Test(priority = 3, dependsOnMethods = {"SelectFirstItem"})
             public void SelectSecondItem() {
-        signup register = new signup(driver);
+        ecomerce register = new ecomerce(driver);
         register.ChooseSecondItem();
     }
     @Test(priority = 4, dependsOnMethods = {"SelectSecondItem"})
             public void SelectThirdItem() {
-        signup register = new signup(driver);
+        ecomerce register = new ecomerce(driver);
         register.ChooseThirdItem();
     }
 
     @Test(priority = 5, dependsOnMethods = {"SelectThirdItem"})
     public void SelectFouthItem() {
-        signup register = new signup(driver);
+        ecomerce register = new ecomerce(driver);
         register.ChooseFourthItem();
     }
     @Test(priority = 6, dependsOnMethods = {"SelectFouthItem"})
     public void SelectRemoveItem() {
-        signup register = new signup(driver);
+        ecomerce register = new ecomerce(driver);
         register.RemoveItem();
     }
 

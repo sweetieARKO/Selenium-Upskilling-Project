@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 
-public class signup {
+public class ecomerce {
     WebDriver driver;
     private By userName = By.xpath("//input[@id='user-name']");
     private By password = By.xpath("//input[@id='password']");
@@ -17,7 +17,8 @@ public class signup {
     private By FourthItem = By.xpath("//button[@id='add-to-cart-test.allthethings()-t-shirt-(red)']");
     private By remove = By.xpath("//button[@id='remove-test.allthethings()-t-shirt-(red)']");
     private By bag = By.xpath("//span[@class='shopping_cart_badge']");
-    public signup(WebDriver driver) {
+
+    public ecomerce(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -32,6 +33,10 @@ public class signup {
 
     public void ClickOnButton() {
         driver.findElement(button).click();
+      String actualTittle  =  driver.getTitle();
+      String ExpectedTitle = "Swag Labs";
+      Assert.assertEquals(actualTittle,ExpectedTitle);
+        System.out.println(actualTittle);
     }
 
     public void ChooseFirstItem() {
