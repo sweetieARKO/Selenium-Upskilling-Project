@@ -23,5 +23,7 @@ fileDownloadsetUp download = new fileDownloadsetUp(driver);
 download.clickOnDownloadButton();
 download.clickOnDownloadFirst();
 download.clickDownloadSecond();
+//download.SetPassword("Automate Now");
+download.FileVerify("test.pdf");
     }
 }
