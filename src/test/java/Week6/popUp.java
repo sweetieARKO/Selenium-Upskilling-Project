@@ -35,7 +35,7 @@ public class popUp{
         @AfterTest
         public void tearDown() {
             if (driver != null) {
-            driver.quit();
+           driver.quit();
             }
         }
     }

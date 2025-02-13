@@ -20,18 +20,18 @@ public class MouseHover {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36");
+        //options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
 
-        driver.get("https://demo.opencart.com");
+        driver.get("http://www.automationpractice.pl/index.php");
     }
     @Test
     public void MouseHover(){
-        WebElement desktop = driver.findElement(By.xpath("//a[normalize-space()='Desktops']"));
-        WebElement mac = driver.findElement(By.xpath("//a[@class='nav-link'][normalize-space()='Mac (1)']"));
+        WebElement  Woman= driver.findElement(By.linkText("Women"));
+        WebElement mac = driver.findElement(By.xpath("//a[.='Evening Dresses']/ancestor::ul"));
         Actions actions = new Actions(driver);
-        actions.moveToElement(desktop).moveToElement(mac).click().build().perform();
+        actions.moveToElement(Woman).moveToElement(mac).click().build().perform();
     }
     @AfterTest
     public void after(){

@@ -10,7 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class dragAndDrop {
+public class mouseActions{
 
         WebDriver driver;
 
@@ -51,7 +51,7 @@ public class dragAndDrop {
         @AfterTest
         public void teardown() {
             if (driver != null) {
-                //  driver.quit();
+                driver.quit();
             }
         }
     }

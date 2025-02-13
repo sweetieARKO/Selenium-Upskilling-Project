@@ -49,48 +49,31 @@ public class All {
     public void ByName() {
         // Locate and input into the First Name field
         By firstNameLocator = By.name("FirstName");
-        driver.findElement(firstNameLocator).sendKeys("abi");
+        driver.findElement(firstNameLocator).sendKeys("Abigail");
         // Validate the input is entered
         String enteredValue = driver.findElement(firstNameLocator).getAttribute("value");
-        Assert.assertEquals(enteredValue, "abi", "First Name value is not entered correctly.");
+        Assert.assertEquals(enteredValue, "Abigail", "First Name value is not entered correctly.");
     }
 
     @Test(dependsOnMethods = {"ByName"})
 
     public void cssSelector() {
-        driver.findElement(By.cssSelector("#LastName")).sendKeys("ark");
+        driver.findElement(By.cssSelector("#LastName")).sendKeys("Arko");
     }
 
     @Test(dependsOnMethods = {"cssSelector"})
     public void relativeXpath() {
-        WebElement day = driver.findElement(By.xpath("//select[@name='DateOfBirthDay']"));
-        Select select = new Select(day);
-        select.selectByVisibleText("1");
+        WebElement email = driver.findElement(By.xpath("//input[@id='Email']"));
+        email.sendKeys("arko.abigail@amalitech.com");
     }
 
     @Test(dependsOnMethods = {"relativeXpath"})
     public void StartWithxpath() {
-        WebElement month = driver.findElement(By.xpath("//select[starts-with(@name, 'DateOfBirthMonth')]"));
-        Select select = new Select(month);
-        select.selectByVisibleText("June");
+        WebElement company = driver.findElement(By.xpath("//input[starts-with(@id, 'Company')]"));
+        company.sendKeys("Amalitech comapany");
     }
 
-    @Test(dependsOnMethods = {"StartWithxpath"})
-    public void XpathByPositiion() {
-        WebElement year = driver.findElement(By.xpath("//select[position()=3]"));
-        Select select = new Select(year);
-        select.selectByVisibleText("1999");
-    }
-
-    @Test(dependsOnMethods = {"XpathByPositiion"})
-    public void StartWithXpath2() {
-        driver.findElement(By.xpath("//input[starts-with(@id, 'Email')]")).sendKeys("abigail.arko027@gmail.com");
-    }
-    @Test(dependsOnMethods = {"StartWithXpath2"})
-    public void contains(){
-        driver.findElement(By.xpath("//input[contains(@id,'Company')] ")).sendKeys("Amalitech Company Limited");
-    }
-@Test(dependsOnMethods = {"contains"})
+@Test(dependsOnMethods = {"StartWithxpath"})
 public void parent(){
         WebElement parent = driver.findElement(By.xpath("//input[@name='Password']/parent::div"));
         WebElement child = parent.findElement(By.xpath("//input[@name='Password']"));
@@ -102,12 +85,12 @@ public void self(){
 }
     @Test(dependsOnMethods = {"self"})
     public void ClassName() {
-        driver.findElement(By.xpath("//input[@id='ConfirmPassword'][self::input]")).click();    }
+        driver.findElement(By.xpath("//button[@id='register-button']/ancestor::div[.='Register']")).click();    }
 
     @AfterTest
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+     //       driver.quit();
         }
     }
 }

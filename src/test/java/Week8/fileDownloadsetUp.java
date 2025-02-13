@@ -54,27 +54,43 @@ public class fileDownloadsetUp {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(downloadTwo));
         button.click();
-    }public void SetPassword(String password) {
-
-
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-        // Switch to the iframe
-        WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("wpdm-lock-frame")));
-        driver.switchTo().frame(iframe);
-        System.out.println("Iframe found: " + iframe.isDisplayed());
-
-        // Enter password and submit
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='password_679cbbf50e7cc_921']")));
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='wpdm_submit_679cbbf50e7cc_921']")));
-
-        passwordField.sendKeys(password);
-        submitButton.click();
     }
+    public void SetPassword (String password){
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+            // Wait for iframe and switch to it
+            WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("wpdm-lock-frame")));
+            driver.switchTo().frame(iframe);
+
+            // Use JavaScript Executor to get the shadow root
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+
+            // Find the shadow host element inside the iframe
+            WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("css-selector-of-shadow-host")));
+
+            // Get shadow root
+            WebElement shadowRoot = (WebElement) js.executeScript("return arguments[0].shadowRoot", shadowHost);
+
+            // Find the password field inside shadow DOM
+            WebElement passwordField = (WebElement) js.executeScript(
+                    "return arguments[0].querySelector('input[type=password]')", shadowRoot);
+
+            // Find the submit button inside shadow DOM
+            WebElement submitButton = (WebElement) js.executeScript(
+                    "return arguments[0].querySelector('input[type=submit]')", shadowRoot);
+
+            // Enter password and submit
+            passwordField.sendKeys(password);
+            submitButton.click();
+
+            // Switch back to main page
+            driver.switchTo().defaultContent();
+
+            System.out.println("Password submitted successfully!");
+        }
 
 
-    // Method to verify if a specific file is downloaded
+        // Method to verify if a specific file is downloaded
     public void FileVerify(String fileName) {
         File file = new File(downloadDir + "\\" + fileName);
         int attempts = 0;

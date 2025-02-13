@@ -81,6 +81,6 @@ public class HandlingCheckbox {
     @AfterTest
     public void afterTest() {
         // Uncomment this line to close the browser after the test
-        // driver.quit();
+         driver.quit();
     }
 }

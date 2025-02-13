@@ -80,4 +80,8 @@ public class PopupTest {
             String ExpectedText = "Nice to meet you, "+ keysTosend+"!";
             Assert.assertEquals(actualText, ExpectedText);
         }
+        @AfterTest
+    public void afterTest(){
+        driver.quit();
+        }
     }

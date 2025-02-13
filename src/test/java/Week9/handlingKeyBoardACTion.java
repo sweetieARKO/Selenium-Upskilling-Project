@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -24,5 +25,9 @@ public class handlingKeyBoardACTion {
         WebElement companyDivLink = driver.findElement(By.linkText("compendiumdev"));
                    Actions actions = new Actions(driver);
                        actions.moveToElement(companyDivLink).keyDown(Keys.CONTROL).click().keyUp(Keys.CONTROL).build().perform();
+    }
+    @AfterTest
+    public void endDriver(){
+        driver.quit();
     }
 }
